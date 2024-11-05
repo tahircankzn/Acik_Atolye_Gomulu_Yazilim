@@ -1,31 +1,27 @@
-#include<stdio.h>
-#include<string.h>
+#include <stdio.h>
+#include <stdint.h>
 
-
-int main()
+union Veri
 {
+    uint32_t veri;
 
-	char A[6] = {"bursa"};                   
-	char B[9] = {"istanbul"};
-	int cnt = 0;
+    struct 
+    {
+        unsigned int rezerve:9;
+        unsigned int data2:8;
+        unsigned int data1:8;
+        unsigned int adres:7;
 
-    for(int i = 0; i<strlen(A);i++){
-        
-        for(int a = 0;a<strlen(B);a++){
-            
-            //printf("%c %c",A[i],B[a]);
-            
-            if(A[i] == B[a]){
-                cnt++;
-                printf("%c",A[i]);
-            }
-            
-            
-        }
-        
-    }
-      printf("\nortak karakter sayisi > %d",cnt);
-      
-    
+    }bytelar;
+
+};
+
+int main(){
+    union Veri veri1;
+    veri1.veri = 0xC6C6C600;
+
+    printf("Adres > %d\nData 1 > %d\nData 2 > %d",veri1.bytelar.adres,veri1.bytelar.data1,veri1.bytelar.data2);
+ 
+
 
 }
