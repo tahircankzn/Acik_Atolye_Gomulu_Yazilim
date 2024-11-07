@@ -2,6 +2,12 @@
 #include <stdlib.h>
 #include <stdint.h>
 
+
+// HIZLI KULLANIM İÇİN
+#define BAYRAK1 (1<<0) // 0000 0001
+#define BAYRAK2 (1<<1) // 0000 0010
+#define BAYRAK3 (1<<2) // 0000 0100
+
 void OR(){
 	// OR İŞLEMİ
 	int a = 5; // 0000 0101
@@ -80,9 +86,45 @@ void BitReset(){ // AND KULLANIILIR
 	// ~(1 << 2) -> 1111 1011
 }
 
+void BitCheck(){
+	// 3. bit 1 mi ?
+	// 3. bit ile 1 değeri and lersek 1 ise 1 , 0 ise 0 gelir
+	int a = 13; // 0000 1101
+				// 0000 1000
+				
+	if(a & (1<<3)){// 0000 1000
+		
+		printf("3. bit 1");
+
+	}
+	else{
+		printf("3. bit 0");
+	}
+	
+	// eğer seçili bit 0 ise , a & (1<<3) = 0000 0000 olur buda 0 yani false
+	// eğer 0 değilse zaten true olur
+
+}
+
+void BitToggle(){
+	int a = 0b00000000;
+	
+	a = a ^ (1<<2); // 2. biti tersledim
+	
+	printf("%d\n",a);
+	
+	a = a ^ (1<<2); // eski haline getirdim
+	
+	a = a ^ 0xFF; // tüm bitler teslendi ve FF oldu
+	
+	printf("%X",a);
+	
+	
+}
+
 int main() {
 	
-	BitReset();
+	BitToggle();
 	
 	return 0;
 }
